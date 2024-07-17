@@ -1,0 +1,1 @@
+export const BASE_URL="http://18.218.25.155:8080"

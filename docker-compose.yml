@@ -1,0 +1,59 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3307:3306"
+    networks:
+      - instagram_network  
+    volumes:
+      - mysql_data:/var/lib/mysql  
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: P@ssw0rd
+      MYSQL_USER: instagram_clone_db_user
+      MYSQL_PASSWORD: P@ssw0rd
+      MYSQL_DATABASE: instagram_clone_db
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u instagram_clone_db_user -pP@ssw0rd"]
+      timeout: 20s
+      retries: 10  
+
+  spring-boot-app:
+      restart: on-failure 
+      build:
+        context: ./instagram
+        dockerfile: Dockerfile
+      image: "alekhyamandava/spring-boot-app:latest"
+
+      ports:
+        - "8080:8080"
+      networks:
+       - instagram_network      
+      depends_on:
+         mysql:
+           condition: service_healthy
+      environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/instagram_clone_db
+        SPRING_DATASOURCE_USERNAME: instagram_clone_db_user
+        SPRING_DATASOURCE_PASSWORD: P@ssw0rd
+
+  react-app:
+      build:
+        context: ./client
+        dockerfile: Dockerfile
+      image: "alekhyamandava/react-app:latest"
+      ports:
+        - "3000:80"
+      networks:
+       - instagram_network   
+      depends_on: 
+       - spring-boot-app
+
+networks:
+  instagram_network:
+    driver: bridge        
+
+    
+volumes:
+  mysql_data: 

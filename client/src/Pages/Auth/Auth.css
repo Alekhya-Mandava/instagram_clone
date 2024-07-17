@@ -1,0 +1,22 @@
+.mobileWallpaper{
+  background-image: url("../../images/loginpage4.png");
+  animation: changeBg 8s infinite;
+
+
+}
+
+
+@keyframes changeBg {
+    0% {
+      background-image: url("../../images/loginpage1.png");
+    }
+    25% {
+      background-image: url("../../images/loginpage2.png");
+    }
+    50%{
+      background-image: url("../../images/loginpage3.png");
+    }
+    75% {
+      background-image: url("../../images/loginpage1.png");
+    }
+  }
