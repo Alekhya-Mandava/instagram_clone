@@ -1,6 +1,6 @@
 
 
-This is an Instagram clone created with front-end technologies React, Tailwind CSS, and JavaScript, and back-end technology Spring Boot. For security, basic authentication using JWT is implemented on the backend. MySQL is used as the database. The application is containerized with Docker and deployed on AWS.
+This is an Instagram clone created with front-end technologies React, Redux, Tailwind CSS, and JavaScript, and back-end technology Spring Boot. For security, basic authentication using JWT is implemented on the backend. MySQL is used as the database. The application is containerized with Docker and deployed on AWS.
  signup page:
 
 ![image](https://github.com/user-attachments/assets/bd8f3697-2136-435c-acfc-41ab7c804214)
