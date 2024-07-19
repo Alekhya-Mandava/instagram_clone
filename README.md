@@ -1,5 +1,7 @@
 Docker Images:
+
 Backend-https://hub.docker.com/r/alekhyamandava/spring-boot-app
+
 Frontend-https://hub.docker.com/r/alekhyamandava/react-app
 
 This is an Instagram clone created with front-end technologies React, Redux, Tailwind CSS, and JavaScript, and back-end technology Spring Boot. For security, basic authentication using JWT is implemented on the backend. MySQL is used as the database. The application is containerized with Docker and deployed on AWS.
